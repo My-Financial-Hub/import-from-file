@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "CoreDatabase": "Server=localhost,1450;Database=financial_hub;user=sa;pwd=P@ssw0rd!;TrustServerCertificate=True"
+  }
+}
