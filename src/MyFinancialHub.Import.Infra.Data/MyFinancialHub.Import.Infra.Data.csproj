@@ -2,24 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Contexts\" />
-    <Folder Include="Repositories\" />
+  <ItemGroup Label="Configurations">
+  	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
+  	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.6" />
+  	<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.6" />
+  	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.6" />
+  	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.development.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <CustomToolNamespace>MyFinancialHub.Pdf.Azure</CustomToolNamespace>
+    <ProjectReference Include="..\MyFinancialHub.Import.Domain\MyFinancialHub.Import.Domain.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <None Update="infra_data_appsettings.development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <CustomToolNamespace>MyFinancialHub.Pdf.Azure</CustomToolNamespace>
+    <None Update="infra_data_appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>
