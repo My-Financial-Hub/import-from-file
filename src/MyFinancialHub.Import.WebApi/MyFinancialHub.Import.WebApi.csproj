@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>d1b00b12-f486-49a3-8ef9-b41d2c20fc03</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyFinancialHub.Import.Application\MyFinancialHub.Import.Application.csproj" />
+    <ProjectReference Include="..\MyFinancialHub.Import.Infra.AI.DocumentIntelligence\MyFinancialHub.Import.Infra.AI.DocumentIntelligence.csproj" />
+    <ProjectReference Include="..\MyFinancialHub.Import.Infra.Data\MyFinancialHub.Import.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,13 +1,40 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Core", "MyFinancialHub.Import.Core\MyFinancialHub.Import.Core.csproj", "{2BA8CEA4-63FB-4188-B2AF-956DD6BCAB63}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Pdf", "MyFinancialHub.Import.Pdf\MyFinancialHub.Import.Pdf.csproj", "{D430E6DB-A98C-4B48-A0A5-47634D303F7F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Console", "MyFinancialHub.Import.Console\MyFinancialHub.Import.Console.csproj", "{034CB36A-0CF7-498F-9EC6-C41A40DDFA32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Application", "MyFinancialHub.Import.Application\MyFinancialHub.Import.Application.csproj", "{3A899045-67E5-46CE-A7BB-11651454DCF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{ED6ED143-504F-4B04-B7B4-995AB66E68BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7402CAC3-77AC-4471-B4F2-3FBAA1D713BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{B937AB76-E18D-4FD2-AC81-737D358235B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Application.CQRS", "MyFinancialHub.Application.CQRS\MyFinancialHub.Application.CQRS.csproj", "{6910EAE7-A44C-499C-8FD1-83EA45FE79AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.WebApi", "MyFinancialHub.Import.WebApi\MyFinancialHub.Import.WebApi.csproj", "{17C4EE58-F6F6-4340-AFB8-EA88826984FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F22DD819-FA5F-48D7-9409-3DEB6FF56E71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DocumentInteligence", "DocumentInteligence", "{76190309-B91A-4EDC-A4A7-5AB62A7BE28B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI", "AI", "{F96EEACE-B38E-4FD4-9AD6-8884781CAEC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{35A6090B-332D-4A08-966A-8856D42FD0D0}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Infra.Data", "MyFinancialHub.Import.Infra.Data\MyFinancialHub.Import.Infra.Data.csproj", "{BDCC1FC8-00E9-D63E-FB91-BAB157C7F594}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Domain", "MyFinancialHub.Import.Domain\MyFinancialHub.Import.Domain.csproj", "{78C32F44-2B67-40DB-6F01-C1141CED07FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Infra.AI.DocumentIntelligence", "MyFinancialHub.Import.Infra.AI.DocumentIntelligence\MyFinancialHub.Import.Infra.AI.DocumentIntelligence.csproj", "{1BD38C39-4BEE-4999-8DC2-CF10E50100A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,21 +42,49 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2BA8CEA4-63FB-4188-B2AF-956DD6BCAB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BA8CEA4-63FB-4188-B2AF-956DD6BCAB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BA8CEA4-63FB-4188-B2AF-956DD6BCAB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BA8CEA4-63FB-4188-B2AF-956DD6BCAB63}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D430E6DB-A98C-4B48-A0A5-47634D303F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D430E6DB-A98C-4B48-A0A5-47634D303F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D430E6DB-A98C-4B48-A0A5-47634D303F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D430E6DB-A98C-4B48-A0A5-47634D303F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{034CB36A-0CF7-498F-9EC6-C41A40DDFA32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{034CB36A-0CF7-498F-9EC6-C41A40DDFA32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{034CB36A-0CF7-498F-9EC6-C41A40DDFA32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{034CB36A-0CF7-498F-9EC6-C41A40DDFA32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A899045-67E5-46CE-A7BB-11651454DCF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A899045-67E5-46CE-A7BB-11651454DCF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A899045-67E5-46CE-A7BB-11651454DCF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A899045-67E5-46CE-A7BB-11651454DCF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6910EAE7-A44C-499C-8FD1-83EA45FE79AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6910EAE7-A44C-499C-8FD1-83EA45FE79AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6910EAE7-A44C-499C-8FD1-83EA45FE79AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6910EAE7-A44C-499C-8FD1-83EA45FE79AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17C4EE58-F6F6-4340-AFB8-EA88826984FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17C4EE58-F6F6-4340-AFB8-EA88826984FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17C4EE58-F6F6-4340-AFB8-EA88826984FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17C4EE58-F6F6-4340-AFB8-EA88826984FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDCC1FC8-00E9-D63E-FB91-BAB157C7F594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDCC1FC8-00E9-D63E-FB91-BAB157C7F594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDCC1FC8-00E9-D63E-FB91-BAB157C7F594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDCC1FC8-00E9-D63E-FB91-BAB157C7F594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C32F44-2B67-40DB-6F01-C1141CED07FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C32F44-2B67-40DB-6F01-C1141CED07FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C32F44-2B67-40DB-6F01-C1141CED07FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C32F44-2B67-40DB-6F01-C1141CED07FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BD38C39-4BEE-4999-8DC2-CF10E50100A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD38C39-4BEE-4999-8DC2-CF10E50100A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD38C39-4BEE-4999-8DC2-CF10E50100A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD38C39-4BEE-4999-8DC2-CF10E50100A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{034CB36A-0CF7-498F-9EC6-C41A40DDFA32} = {B937AB76-E18D-4FD2-AC81-737D358235B3}
+		{3A899045-67E5-46CE-A7BB-11651454DCF9} = {ED6ED143-504F-4B04-B7B4-995AB66E68BF}
+		{6910EAE7-A44C-499C-8FD1-83EA45FE79AF} = {ED6ED143-504F-4B04-B7B4-995AB66E68BF}
+		{17C4EE58-F6F6-4340-AFB8-EA88826984FE} = {B937AB76-E18D-4FD2-AC81-737D358235B3}
+		{F22DD819-FA5F-48D7-9409-3DEB6FF56E71} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{76190309-B91A-4EDC-A4A7-5AB62A7BE28B} = {F96EEACE-B38E-4FD4-9AD6-8884781CAEC1}
+		{F96EEACE-B38E-4FD4-9AD6-8884781CAEC1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{BDCC1FC8-00E9-D63E-FB91-BAB157C7F594} = {F22DD819-FA5F-48D7-9409-3DEB6FF56E71}
+		{78C32F44-2B67-40DB-6F01-C1141CED07FC} = {7402CAC3-77AC-4471-B4F2-3FBAA1D713BE}
+		{1BD38C39-4BEE-4999-8DC2-CF10E50100A9} = {76190309-B91A-4EDC-A4A7-5AB62A7BE28B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40043BF4-AFE2-4BFA-B9F1-20D58658C7D6}
