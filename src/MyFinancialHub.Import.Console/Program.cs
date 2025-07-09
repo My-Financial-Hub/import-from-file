@@ -20,7 +20,7 @@ var Main = async () =>
 {
     try
     {
-        var path = "C:\\Users\\Frank\\Desktop\\2020_lancamentos.pdf";
+        var path = "C:\\Users\\Frank\\Desktop\\2017_lancamentos.pdf";
         var file = File.OpenRead(path);
         var accountName = "TestAccount";
         await service.Dispatch(new ImportPdfFileCommand(file, accountName));

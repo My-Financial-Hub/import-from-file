@@ -6,13 +6,13 @@ namespace MyFinancialHub.Import.Application.Handlers.ImportPdfFile
     internal class ImportPdfFileCommandHandler(
         AccountService accountService,
         BalanceService balanceService,
-        IBalanceImportService documentImport,
+        IImportDataService importService,
         ILogger<ImportPdfFileCommandHandler> logger
     ) : ICommandHandler<ImportPdfFileCommand>
     {
         private readonly AccountService accountService = accountService;
         private readonly BalanceService balanceService = balanceService;
-        private readonly IBalanceImportService documentImport = documentImport;
+        private readonly IImportDataService importService = importService;
         private readonly ILogger<ImportPdfFileCommandHandler> logger = logger;
 
         public async Task Handle(ImportPdfFileCommand command)
@@ -22,10 +22,10 @@ namespace MyFinancialHub.Import.Application.Handlers.ImportPdfFile
             var account = await this.accountService.GetOrCreateAsync(command.AccountName);
 
             this.logger.LogInformation("Analyzing PDF file for account: {AccountName}", command.AccountName);
-            var balances = await this.documentImport.ImportAsync(command.PdfStream);
+            var importData = await this.importService.ImportAsync(command.PdfStream);
 
             this.logger.LogInformation("Inserting balances for account: {AccountName}", command.AccountName);
-            balances = await this.balanceService.InsertAsync(balances);
+            var balances = await this.balanceService.InsertAsync(importData.Balances);
 
             this.logger.LogInformation("Updating account with new balances: {AccountName}", command.AccountName);
             account.AddBalances(balances);

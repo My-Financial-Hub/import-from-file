@@ -1,4 +1,6 @@
-﻿namespace MyFinancialHub.Import.Infra.Data.Mappers
+﻿using MyFinancialHub.Import.Domain.Entities.Accounts;
+
+namespace MyFinancialHub.Import.Infra.Data.Mappers
 {
     internal class BalanceMapper
     {
@@ -6,9 +8,7 @@
         {
             if (entity == null)
                 return null;
-            var balance = new Balance(entity.Name, 0);
-            // balance.AddTransactions(entity.Transactions);
-
+            var balance = new Balance(entity.Name, entity.Amount);
             return balance;
         }
 

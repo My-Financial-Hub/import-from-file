@@ -19,6 +19,7 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers.Pdf
 
             return categories.Split(',')
                 .Select(name => name.Trim())
+                .Distinct()
                 .Where(name => !string.IsNullOrWhiteSpace(name))
                 .Select(name => new PdfCategory(name));
         }

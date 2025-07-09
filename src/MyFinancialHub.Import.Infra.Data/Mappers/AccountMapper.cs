@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using MyFinancialHub.Import.Domain.Entities.Accounts;
+using System.Linq;
 
 namespace MyFinancialHub.Import.Infra.Data.Mappers
 {

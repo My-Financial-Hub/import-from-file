@@ -1,4 +1,4 @@
-﻿namespace MyFinancialHub.Import.Domain.Entities
+﻿namespace MyFinancialHub.Import.Domain.Entities.Transactions
 {
     public enum TransactionStatus
     {

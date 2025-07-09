@@ -1,4 +1,6 @@
-﻿namespace MyFinancialHub.Import.Application.Services
+﻿using MyFinancialHub.Import.Domain.Entities.Accounts;
+
+namespace MyFinancialHub.Import.Application.Services
 {
     internal class AccountService(
         IAccountRepository accountRepository,

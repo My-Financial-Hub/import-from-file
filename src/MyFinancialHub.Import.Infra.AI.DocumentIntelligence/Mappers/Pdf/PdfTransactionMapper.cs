@@ -9,6 +9,7 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers.Pdf
             "Data",
             "Grupo",
             "Conta",
+            "Descrição",
             "Valor"
         ];
 
@@ -17,11 +18,14 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers.Pdf
             if (cells == null || cells.Length != columns.Length)
                 throw new ArgumentException($"Invalid cells array. It must contain {columns.Length} cells.", nameof(cells));
 
+            var date = DateTime.ParseExact(cells[0]?.Content, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            var amount = decimal.Parse(cells[4]?.Content[1..] ?? "0", NumberStyles.Currency, CultureInfo.GetCultureInfo("pt-BR"));
             return new PdfTransaction(
-                DateTime.ParseExact(cells[0]?.Content, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                date,
                 cells[1].Content,
                 cells[2].Content,
-                decimal.Parse(cells[3]?.Content ?? "0", NumberStyles.Currency, CultureInfo.GetCultureInfo("pt-BR"))
+                cells[3].Content,
+                cells[4]?.Content.First() == '+'? amount : -amount
             );
         }
 

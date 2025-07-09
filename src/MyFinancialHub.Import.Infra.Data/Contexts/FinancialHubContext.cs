@@ -10,9 +10,9 @@ namespace MyFinancialHub.Import.Infra.Data.Contexts
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<AccountEntity> Accounts { get; }
-        public DbSet<TransactionEntity> Transactions { get; }
-        public DbSet<CategoryEntity> Categories { get; }
-        public DbSet<BalanceEntity> Balances { get; }
+        public DbSet<AccountEntity> Accounts { get; set; }
+        public DbSet<TransactionEntity> Transactions { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<BalanceEntity> Balances { get; set; }
     }
 }

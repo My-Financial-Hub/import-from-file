@@ -10,7 +10,7 @@
         private readonly PdfBalanceMapper balanceMapper = balanceMapper;
         private readonly PdfTransactionMapper transactionMapper = transactionMapper;
 
-        public PdfDataAggregate Map(AnalyzeResult analyzeResult)
+        public PdfImportData Map(AnalyzeResult analyzeResult)
         {
             if (analyzeResult == null)
                 throw new ArgumentNullException(nameof(analyzeResult), "AnalyzeResult cannot be null.");
@@ -19,7 +19,7 @@
             var balances = balanceMapper.Map(analyzeResult.Paragraphs).ToList();
             var transactions = transactionMapper.Map(analyzeResult.Tables).ToList();
 
-            return new PdfDataAggregate(categories, balances, transactions);
+            return new PdfImportData(categories, balances, transactions);
         }
     }
 }

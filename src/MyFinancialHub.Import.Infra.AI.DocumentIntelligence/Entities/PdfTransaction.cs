@@ -4,6 +4,7 @@
         DateTime Date,
         string Category, 
         string Balance, 
+        string Description,
         decimal Amount
     );
 }

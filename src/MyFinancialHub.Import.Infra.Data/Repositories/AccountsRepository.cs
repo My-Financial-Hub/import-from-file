@@ -1,4 +1,5 @@
-﻿using MyFinancialHub.Import.Infra.Data.Mappers;
+﻿using MyFinancialHub.Import.Domain.Entities.Accounts;
+using MyFinancialHub.Import.Infra.Data.Mappers;
 
 namespace MyFinancialHub.Import.Infra.Data.Repositories
 {

@@ -1,4 +1,4 @@
-﻿namespace MyFinancialHub.Import.Domain.Entities
+﻿namespace MyFinancialHub.Import.Domain.Entities.Accounts
 {
     public class Account(string name, decimal amount)
     {
@@ -21,7 +21,7 @@
         {
             ArgumentNullException.ThrowIfNull(balance);
             Balances.Add(balance);
-            this.Amount += balance.Amount;
+            Amount += balance.Amount;
         }
     }
 }

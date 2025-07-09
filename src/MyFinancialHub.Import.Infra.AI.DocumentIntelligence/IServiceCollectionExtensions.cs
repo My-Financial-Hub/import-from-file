@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MyFinancialHub.Import.Domain.Interfaces.Services;
 using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Configurations;
+using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers;
 using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers.Pdf;
 using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Services;
 
@@ -54,20 +55,19 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence
 
         private static IServiceCollection AddMappers(this IServiceCollection services)
         {
-            services.AddScoped<TransactionMapper>();
-            services.AddScoped<BalanceMapper>();
+            services.AddScoped<ImportDataMapper>();
 
             services.AddScoped<PdfDataMapper>();
             services.AddScoped<PdfCategoryMapper>();
             services.AddScoped<PdfBalanceMapper>();
-            services.AddScoped<PdfTransactionMapper>();
+            services.AddScoped<PdfTransactionMapper>(); 
 
             return services;
         }
 
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IBalanceImportService, AzurePdfServices>();
+            services.AddScoped<IImportDataService, AzurePdfServices>();
             services.AddScoped<AzurePdfRepository>();
             return services;
         }

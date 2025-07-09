@@ -1,18 +1,19 @@
 ﻿using Microsoft.Extensions.Logging;
 using MyFinancialHub.Import.Domain.Interfaces.Services;
+using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers;
 
 namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Services
 {
     internal class AzurePdfServices(
-        BalanceMapper mapper, 
+        ImportDataMapper mapper, 
         AzurePdfRepository repository, 
         ILogger<AzurePdfServices> logger
-        ) : IBalanceImportService
+        ) : IImportDataService
     {
         private readonly AzurePdfRepository repository = repository;
         private readonly ILogger<AzurePdfServices> logger = logger;
 
-        public async Task<IEnumerable<Balance>> ImportAsync(Stream fileStream)
+        public async Task<ImportData> ImportAsync(Stream fileStream)
         {
             using var _ = logger.BeginScope("AzurePdfServices.ImportAsync");
             logger.LogInformation("Starting import of PDF file stream.");
@@ -24,7 +25,7 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Services
 
             logger.LogInformation("Calling repository to analyze PDF document.");
             var data = await repository.ImportAsync(fileStream);
-
+            //TODO: ADD THE TRANSACTIONS TO INSIDE BALANCE  
             logger.LogInformation("Mapping PDF data to balances.");
             return mapper.Map(data);
         }

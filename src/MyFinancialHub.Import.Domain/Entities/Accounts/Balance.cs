@@ -1,4 +1,6 @@
-﻿namespace MyFinancialHub.Import.Domain.Entities
+﻿using MyFinancialHub.Import.Domain.Entities.Transactions;
+
+namespace MyFinancialHub.Import.Domain.Entities.Accounts
 {
     public class Balance(string name, decimal amount)
     {

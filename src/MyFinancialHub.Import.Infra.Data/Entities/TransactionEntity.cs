@@ -1,4 +1,6 @@
-﻿namespace MyFinancialHub.Import.Infra.Data.Entities
+﻿using MyFinancialHub.Import.Domain.Entities.Transactions;
+
+namespace MyFinancialHub.Import.Infra.Data.Entities
 {
     public class TransactionEntity : BaseEntity
     {

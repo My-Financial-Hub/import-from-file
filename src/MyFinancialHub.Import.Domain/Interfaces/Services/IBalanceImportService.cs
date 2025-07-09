@@ -1,4 +1,6 @@
-﻿namespace MyFinancialHub.Import.Domain.Interfaces.Services
+﻿using MyFinancialHub.Import.Domain.Entities.Accounts;
+
+namespace MyFinancialHub.Import.Domain.Interfaces.Services
 {
     public interface IBalanceImportService
     {
