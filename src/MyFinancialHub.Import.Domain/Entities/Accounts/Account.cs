@@ -8,7 +8,7 @@
 
         public void AddBalances(IEnumerable<Balance> balances)
         {
-            if (balances?.Any() ?? true)
+            if (!balances.Any())
                 throw new ArgumentNullException(nameof(balances), "Balances cannot be null.");
 
             foreach (var balance in balances)
