@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Domai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFinancialHub.Import.Infra.AI.DocumentIntelligence", "MyFinancialHub.Import.Infra.AI.DocumentIntelligence\MyFinancialHub.Import.Infra.AI.DocumentIntelligence.csproj", "{1BD38C39-4BEE-4999-8DC2-CF10E50100A9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{A35943E2-75BC-491F-852F-B3B870F42A9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
