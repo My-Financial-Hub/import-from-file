@@ -26,7 +26,9 @@ namespace MyFinancialHub.Import.Application
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<AccountService>();
-            services.AddScoped<BalanceService>();
+            services.AddScoped<BalanceService>(); 
+            services.AddScoped<CategoryService>(); 
+            services.AddScoped<TransactionService>(); 
             return services;
         } 
     }
