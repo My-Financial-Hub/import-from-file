@@ -8,11 +8,11 @@ namespace MyFinancialHub.Import.Infra.Data.Mappers
         {
             if (entity == null)
                 return null;
-            var balance = new Balance(entity.Name, entity.Amount);
-            return balance;
+
+            return new Balance(entity.Name, entity.Amount);
         }
 
-        public BalanceEntity Map(Balance balance)
+        public BalanceEntity Map(Balance balance, Guid accountId)
         {
             if (balance == null)
                 return null;
@@ -20,6 +20,11 @@ namespace MyFinancialHub.Import.Infra.Data.Mappers
             var entity = new BalanceEntity
             {
                 Name = balance.Name,
+                Amount = balance.Amount,
+                AccountId = accountId,
+                Currency = string.Empty,
+                Transactions = new List<TransactionEntity>(),
+                IsActive = true, 
             };
             return entity;
         }

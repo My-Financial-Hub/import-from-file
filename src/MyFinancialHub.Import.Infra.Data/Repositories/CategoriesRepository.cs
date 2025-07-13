@@ -1,24 +1,37 @@
 ﻿using MyFinancialHub.Import.Domain.Entities.Transactions;
+using System.Linq;
 
 namespace MyFinancialHub.Import.Infra.Data.Repositories
 {
-    internal class CategoriesRepository(FinancialHubContext context) : ICategoryRepository
+    internal class CategoriesRepository(FinancialHubContext context, CategoryMapper mapper) :
+        BaseRepository(context), 
+        ICategoryRepository
     {
-        private readonly FinancialHubContext context = context;
+        private readonly CategoryMapper mapper = mapper;
 
-        public Task AddAsync(Category category)
+        public async Task AddAsync(Category category)
         {
-            throw new NotImplementedException();
+            var categoryEntity = this.mapper.Map(category);
+            var now = DateTimeOffset.Now;
+            categoryEntity.CreationTime = now;
+            categoryEntity.UpdateTime = now;
+
+            await this.context.Categories.AddAsync(categoryEntity);
         }
 
-        public Task<Category> GetByNameAsync(string name)
+        public async Task<Category> GetByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            return await this.context.Categories
+                .FirstOrDefaultAsync(c => c.Name == name)
+                .ContinueWith(task => task.Result is null ? null : this.mapper.Map(task.Result));
         }
 
-        public Task<IEnumerable<Category>> GetByNamesAsync(string[] names)
+        public async Task<IEnumerable<Category>> GetByNamesAsync(string[] names)
         {
-            throw new NotImplementedException();
+            return await this.context.Categories
+                .Where(category => names.Contains(category.Name))
+                .Select(category => mapper.Map(category))
+                .ToListAsync();
         }
     }
 }

@@ -28,7 +28,6 @@ namespace MyFinancialHub.Import.Infra.Data.Mappers
             var entity = new AccountEntity
             {
                 Name = account.Name,
-                Balances = account.Balances.Select(balanceMapper.Map).ToArray(),
             };
             return entity;
         }

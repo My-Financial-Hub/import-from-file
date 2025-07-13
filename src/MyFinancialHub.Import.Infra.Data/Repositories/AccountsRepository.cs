@@ -1,28 +1,29 @@
 ﻿using MyFinancialHub.Import.Domain.Entities.Accounts;
-using MyFinancialHub.Import.Infra.Data.Mappers;
 
 namespace MyFinancialHub.Import.Infra.Data.Repositories
 {
-    internal class AccountsRepository(FinancialHubContext context, AccountMapper mapper) : IAccountRepository
+    internal class AccountsRepository(FinancialHubContext context, AccountMapper mapper) :
+        BaseRepository(context), 
+        IAccountRepository
     {
-        private readonly FinancialHubContext context = context;
         private readonly AccountMapper mapper = mapper;
 
         public async Task CreateAsync(Account account)
         {
             var entity = this.mapper.Map(account);
 
-            var now = DateTime.UtcNow;
+            var now = DateTimeOffset.Now;
             entity.CreationTime = now;
             entity.UpdateTime = now;
 
             await this.context.Accounts.AddAsync(entity);
-            await this.context.SaveChangesAsync();
         }
 
         public async Task<Account> GetByNameAsync(string name)
         {
-            var account = await this.context.Accounts.FirstOrDefaultAsync(a => a.Name == name);
+            var account = await this.context.Accounts
+                .AsNoTracking()
+                .FirstOrDefaultAsync(a => a.Name == name);
             if (account == null)
                 return null;
 
@@ -31,10 +32,16 @@ namespace MyFinancialHub.Import.Infra.Data.Repositories
 
         public async Task UpdateAsync(Account account)
         {
+            var foundAccount = await this.context.Accounts
+                .AsNoTracking()
+                .FirstAsync(b => b.Name == account.Name);
+
             var entity = this.mapper.Map(account);
+            entity.Id = foundAccount.Id;
+            entity.CreationTime = foundAccount.CreationTime;
+            entity.UpdateTime = DateTimeOffset.Now;
 
             this.context.Accounts.Update(entity);
-            await this.context.SaveChangesAsync();
         }
     }
 }
