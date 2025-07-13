@@ -13,8 +13,10 @@ namespace MyFinancialHub.Import.Application.Services
         public async Task<Account> GetOrCreateAsync(string accountName)
         {
             using var _ = this.logger.BeginScope("Get and Create Account By Name");
-            this.logger.LogInformation("Retrieving account: {AccountName}", accountName);
-            var account =  await this.accountRepository.GetByNameAsync(accountName);
+            if (string.IsNullOrWhiteSpace(accountName))
+                throw new ArgumentException("Account name cannot be null or empty.", nameof(accountName));
+
+            var account =  await this.GetByNameAsync(accountName);
 
             if (account is null)
             {
@@ -34,24 +36,24 @@ namespace MyFinancialHub.Import.Application.Services
             return account;
         }
 
-        public async Task<Account?> GetByNameAsync(string accountName)
+        private async Task<Account?> GetByNameAsync(string accountName)
         {
             using var _ = this.logger.BeginScope("Get Account By Name");
             this.logger.LogInformation("Retrieving account: {AccountName}", accountName);
             return await this.accountRepository.GetByNameAsync(accountName);
         }
 
-        public async Task<Account?> CreateAsync(string accountName)
+        private async Task<Account?> CreateAsync(string accountName)
         {
-            using var _ = this.logger.BeginScope("Create Account By Name");
+            using var _ = this.logger.BeginScope("Create Account");
             if (string.IsNullOrWhiteSpace(accountName))
                 throw new ArgumentException("Account name cannot be null or empty.", nameof(accountName));
             
             var account = new Account(accountName, 0);
-            this.logger.LogInformation("Retrieving account: {AccountName}", accountName);
+            this.logger.LogInformation("Creating account: {AccountName}", accountName);
             await this.accountRepository.CreateAsync(account);
+            await this.accountRepository.CommitAsync();
             this.logger.LogInformation("Account {AccountName} created", accountName);
-
             return account;
         }
 
@@ -63,6 +65,8 @@ namespace MyFinancialHub.Import.Application.Services
 
             this.logger.LogInformation("Updating account: {AccountName}", account.Name);
             await this.accountRepository.UpdateAsync(account);
-        } 
+            await this.accountRepository.CommitAsync();
+            this.logger.LogInformation("Account {AccountName} updated", account.Name);
+        }
     }
 }

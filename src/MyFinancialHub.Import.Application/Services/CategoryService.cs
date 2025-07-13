@@ -7,25 +7,37 @@ namespace MyFinancialHub.Import.Application.Services
         private readonly ICategoryRepository categoryRepository = categoryRepository;
         private readonly ILogger<CategoryService> logger = logger;
 
-        public async Task<IEnumerable<Category>> GetByNamesAsync(string[] names)
+        public async Task InsertIfNotExistsAsync(IEnumerable<Category> categories)
         {
+            using var _ = this.logger.BeginScope("InsertIfNotExistsAsync");
+            var names = categories.Select(c => c.Name).ToArray();
             try
             {
-                var categories = (await this.categoryRepository.GetByNamesAsync(names)).ToDictionary(k => k.Name);
+                var addedAmount = 0;
+                var foundCategories = (await this.categoryRepository.GetByNamesAsync(names)).ToDictionary(k => k.Name);
                 foreach (var (name, category) in from name in names
-                                                 where !categories.ContainsKey(name)
+                                                 where !foundCategories.ContainsKey(name)
                                                  let category = new Category(name)
                                                  select (name, category))
                 {
+                    this.logger.LogInformation("Inserting category: {CategoryName}", name);
                     await this.categoryRepository.AddAsync(category);
-                    categories[name] = category;
+                    foundCategories[name] = category;
+                    addedAmount++;
                 }
-
-                return categories.Values;
+                if(addedAmount > 0)
+                {
+                    this.logger.LogInformation("Added {AddedAmount} categories", addedAmount);
+                    await this.categoryRepository.CommitAsync();
+                }
+                else
+                {
+                    this.logger.LogInformation("No new categories added");
+                }
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error retrieving category by names: {Message}", ex.Message);
+                this.logger.LogError(ex, "Error in InsertIfExistsAsync: {Message}", ex.Message);
                 throw;
             }
         }
