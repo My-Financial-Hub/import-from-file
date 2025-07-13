@@ -13,5 +13,4 @@ global using MyFinancialHub.Import.Infra.Data.Repositories;
 global using MyFinancialHub.Import.Domain.Interfaces.Repositories;
 
 // Domain namespaces
-global using MyFinancialHub.Import.Domain.Entities;
- 
+global using MyFinancialHub.Import.Infra.Data.Mappers;
