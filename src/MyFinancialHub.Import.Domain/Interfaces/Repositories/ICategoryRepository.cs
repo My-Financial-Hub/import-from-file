@@ -7,6 +7,6 @@ namespace MyFinancialHub.Import.Domain.Interfaces.Repositories
         Task<Category?> GetByNameAsync(string name);
         Task<IEnumerable<Category>> GetByNamesAsync(string[] names);
         Task AddAsync(Category category);
-
+        Task CommitAsync();
     }
 }

@@ -6,8 +6,10 @@ namespace MyFinancialHub.Import.Domain.Interfaces.Repositories
     {
         Task<Balance?> GetByNameAsync(string name);
 
-        Task AddAsync(Balance account);
+        Task AddAsync(Balance balance, string accountName);
 
-        Task UpdateAsync(Balance account);
+        Task UpdateAsync(Balance balance, string accountName);
+
+        Task CommitAsync();
     }
 }
