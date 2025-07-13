@@ -7,7 +7,7 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers
     {
         public ImportData Map(PdfImportData pdfData)
         {
-            var categories = pdfData.Categories.Select(c => new Category(c.Name)).ToList();
+            var categories = pdfData.Categories.Select(c => new Category(c.Name)).ToDictionary(k => k.Name);
             var balances = pdfData.Balances.Select(b => new Balance(b.Name, b.Amount)).ToDictionary(k => k.Name);
             var transactions = new List<Transaction>();
             foreach (var pdfTransaction in pdfData.Transactions)
@@ -17,7 +17,8 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers
                     var transaction = new Transaction(
                         pdfTransaction.Description, 
                         pdfTransaction.Amount, 
-                        pdfTransaction.Date
+                        pdfTransaction.Date,
+                        categories.GetValueOrDefault(pdfTransaction.Category)
                     );
                     balance.AddTransaction(transaction);
                     transactions.Add(transaction);
@@ -27,7 +28,7 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers
                     throw new InvalidDataException($"Balance '{pdfTransaction.Balance}' not found for transaction on {pdfTransaction.Date}.");
                 }
             }
-            return new ImportData(categories, balances.Values.ToList(), transactions);
+            return new ImportData(categories.Values.ToList(), balances.Values.ToList(), transactions);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MyFinancialHub.Import.Domain.Interfaces.Services;
 using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers;
+using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Repositories;
 
 namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Services
 {
@@ -25,7 +26,6 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Services
 
             logger.LogInformation("Calling repository to analyze PDF document.");
             var data = await repository.ImportAsync(fileStream);
-            //TODO: ADD THE TRANSACTIONS TO INSIDE BALANCE  
             logger.LogInformation("Mapping PDF data to balances.");
             return mapper.Map(data);
         }
