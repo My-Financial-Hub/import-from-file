@@ -14,6 +14,7 @@
   <ItemGroup Label="Configurations">
 	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.6" />
 	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
+	<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="9.0.0" />
 	<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.6" />
   </ItemGroup>
 
@@ -22,11 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.development.json">
+    <None Update="doc_int_appsettings.development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CustomToolNamespace>MyFinancialHub.Pdf.Azure</CustomToolNamespace>
     </None>
-    <None Update="appsettings.json">
+    <None Update="doc_int_appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CustomToolNamespace>MyFinancialHub.Pdf.Azure</CustomToolNamespace>
     </None>

@@ -6,6 +6,8 @@ namespace MyFinancialHub.Import.Domain.Interfaces.Repositories
     {
         Task<Balance?> GetByNameAsync(string name);
 
+        Task<IEnumerable<Balance>> GetByNamesAsync(params string[] names);
+
         Task AddAsync(Balance balance, string accountName);
 
         Task UpdateAsync(Balance balance, string accountName);

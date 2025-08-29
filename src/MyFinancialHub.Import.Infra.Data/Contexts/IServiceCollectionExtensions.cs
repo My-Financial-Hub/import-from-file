@@ -17,7 +17,11 @@ namespace MyFinancialHub.Import.Infra.Data.Contexts
             services.AddDbContext<FinancialHubContext>(
                 options => options.UseSqlServer(
                     configuration.GetConnectionString("CoreDatabase"),
-                    x => x.MigrationsHistoryTable("migrations")
+                    config => {
+                        config
+                            .MigrationsHistoryTable("migrations")
+                            .EnableRetryOnFailure(5, TimeSpan.FromSeconds(1), null);
+                    }
                 )
             );
             return services;

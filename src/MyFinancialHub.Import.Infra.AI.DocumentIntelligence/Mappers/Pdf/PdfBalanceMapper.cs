@@ -15,9 +15,10 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers.Pdf
             var balances = paragraph.Content
                 .Split(BALANCE_NAME)
                 .Skip(1)
-                .First();
+                .First()
+                .Split("Grupos:");
 
-            return balances.Split(',')
+            return balances[0].Split(',')
                 .Select(name => name.Trim())
                 .Distinct()
                 .Where(name => !string.IsNullOrWhiteSpace(name))

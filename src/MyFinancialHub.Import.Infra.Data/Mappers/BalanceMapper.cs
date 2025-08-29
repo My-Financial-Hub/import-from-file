@@ -6,16 +6,14 @@ namespace MyFinancialHub.Import.Infra.Data.Mappers
     {
         public Balance Map(BalanceEntity entity)
         {
-            if (entity == null)
-                return null;
+            ArgumentNullException.ThrowIfNull(entity);
 
             return new Balance(entity.Name, entity.Amount);
         }
 
         public BalanceEntity Map(Balance balance, Guid accountId)
         {
-            if (balance == null)
-                return null;
+            ArgumentNullException.ThrowIfNull(balance);
 
             var entity = new BalanceEntity
             {

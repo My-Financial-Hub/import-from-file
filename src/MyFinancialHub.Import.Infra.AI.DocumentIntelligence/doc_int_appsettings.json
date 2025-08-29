@@ -1,9 +1,5 @@
 ﻿{
   "Azure": {
-    "BlobStorage": {
-      "ConnectionString": "",
-      "ContainerName": ""
-    },
     "CognitiveServices": {
       "DocumentIntelligence": {
         "Endpoint": "",

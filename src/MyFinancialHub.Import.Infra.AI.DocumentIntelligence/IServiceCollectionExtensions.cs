@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Services;
+﻿using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Services;
 using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers;
 using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Configurations;
 using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Repositories;
@@ -13,8 +12,8 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence
             return services
                 .AddConfigurations()
                 .AddMappers()
-                .AddAzureDocumentIntelligence()
-                .AddServices();
+                .AddServices()
+                .AddRepositories();
         }
     }
 }

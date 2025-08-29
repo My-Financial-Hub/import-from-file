@@ -5,21 +5,22 @@ using MyFinancialHub.Import.Application.Handlers.ImportPdfFile;
 namespace MyFinancialHub.Import.WebApi.Controllers
 {
     [ApiController]
-    [Route("import-balances")]
+    [Route("api/import-balances")]
     public class ImportBalancesController(IDispatcher dispatcher) : ControllerBase
     {
         private readonly IDispatcher dispatcher = dispatcher;
 
-        [HttpPost("pfd/{accountName}")]
+        [HttpPost("pdf/{accountName}")]
         public async Task<IActionResult> Post(
-            [FromForm] IFormFile file, 
-            string accountName
+            [FromRoute] string accountName,
+            [FromForm] UploadModel form
             )
         {
-            var command = new ImportPdfFileCommand(file.OpenReadStream(), accountName);
+            var command = new ImportPdfFileCommand(form.File.OpenReadStream(), accountName);
             await this.dispatcher.Dispatch(command);
-
             return Created();
         }
     }
+
+    public record class UploadModel(IFormFile File);
 }

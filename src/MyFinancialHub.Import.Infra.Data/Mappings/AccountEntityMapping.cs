@@ -13,8 +13,7 @@ namespace MyFinancialHub.Import.Infra.Data.Mappings
 
             builder.Property(t => t.Description)
                 .HasColumnName("description")
-                .HasMaxLength(500)
-                .IsRequired();
+                .HasMaxLength(500);
 
             builder.Property(t => t.IsActive)
                 .HasColumnName("active");

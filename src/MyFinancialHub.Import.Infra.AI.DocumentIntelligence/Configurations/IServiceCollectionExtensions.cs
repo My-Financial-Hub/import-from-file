@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Configurations
 {
@@ -9,12 +8,13 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Configurations
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: false)
+                .AddJsonFile("doc_int_appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("doc_int_appsettings.development.json", optional: true, reloadOnChange: false)
                 .Build();
 
             services.Configure<AzureDocumentIntelligenceConfigurations>(
-                configuration.GetSection("Azure:CognitiveServices:DocumentIntelligence"));
+                configuration.GetSection("Azure:CognitiveServices:DocumentIntelligence")
+            );
 
             return services;
         }

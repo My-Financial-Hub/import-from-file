@@ -2,10 +2,10 @@
 {
     public class AccountEntity : BaseEntity
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool IsActive { get; set; }
+        public required string Name { get; init; }
+        public string? Description { get; init; }
+        public required bool IsActive { get; init; }
 
-        public ICollection<BalanceEntity> Balances { get; set; }
+        public ICollection<BalanceEntity> Balances { get; init; } = new List<BalanceEntity>();
     }
 }

@@ -14,6 +14,7 @@ namespace MyFinancialHub.Import.WebApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddLogging(configure => configure.AddConsole());
+            builder.Services.AddHealthChecks();
             builder.Services
                 .AddApplication()
                 .AddSqlRepositories()
@@ -33,6 +34,7 @@ namespace MyFinancialHub.Import.WebApi
             app.UseAuthorization();
 
             app.MapControllers();
+            app.MapHealthChecks("/health");
 
             app.Run();
         }

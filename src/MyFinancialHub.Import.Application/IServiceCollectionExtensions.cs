@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using MyFinancialHub.Application.CQRS;
-using MyFinancialHub.Application.CQRS.Handlers.Commands;
-using MyFinancialHub.Import.Application.Handlers.ImportPdfFile;
+﻿using MyFinancialHub.Application.CQRS;
+using MyFinancialHub.Import.Application.Handlers;
 using MyFinancialHub.Import.Application.Services;
 
 namespace MyFinancialHub.Import.Application
@@ -15,21 +13,5 @@ namespace MyFinancialHub.Import.Application
                 .AddHandlers()
                 .AddServices();
         }
-
-
-        private static IServiceCollection AddHandlers(this IServiceCollection services)
-        {
-            services.AddScoped<ICommandHandler<ImportPdfFileCommand>, ImportPdfFileCommandHandler>();
-            return services;
-        } 
-
-        private static IServiceCollection AddServices(this IServiceCollection services)
-        {
-            services.AddScoped<AccountService>();
-            services.AddScoped<BalanceService>(); 
-            services.AddScoped<CategoryService>(); 
-            services.AddScoped<TransactionService>(); 
-            return services;
-        } 
     }
 }

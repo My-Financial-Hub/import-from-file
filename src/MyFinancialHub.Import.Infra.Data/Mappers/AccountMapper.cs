@@ -8,13 +8,15 @@ namespace MyFinancialHub.Import.Infra.Data.Mappers
         private readonly BalanceMapper balanceMapper = balanceMapper;
 
         public Account Map(AccountEntity entity)
-        {
-            if (entity == null)
-                return null;
+        {            
             var account = new Account(entity.Name, 0);
-            if(entity.Balances?.Count > 0)
+
+            var balances = entity.Balances;
+            if (balances is not null && balances.Count > 0) 
             {
-                account.AddBalances(entity.Balances.Select(balanceMapper.Map));
+                account.AddBalances(
+                    balances.Select(balanceMapper.Map)
+                );
             }
 
             return account;
@@ -22,12 +24,10 @@ namespace MyFinancialHub.Import.Infra.Data.Mappers
 
         public AccountEntity Map(Account account)
         {
-            if (account == null)
-                return null;
-
             var entity = new AccountEntity
             {
                 Name = account.Name,
+                IsActive = true
             };
             return entity;
         }

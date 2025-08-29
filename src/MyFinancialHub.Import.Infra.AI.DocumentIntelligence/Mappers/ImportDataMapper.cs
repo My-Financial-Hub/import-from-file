@@ -28,7 +28,11 @@ namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers
                     throw new InvalidDataException($"Balance '{pdfTransaction.Balance}' not found for transaction on {pdfTransaction.Date}.");
                 }
             }
-            return new ImportData(categories.Values.ToList(), balances.Values.ToList(), transactions);
+            return new ImportData(
+                categories.Values.ToList(), 
+                balances.Values.ToList(), 
+                transactions
+            );
         }
     }
 }

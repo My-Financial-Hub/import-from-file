@@ -1,5 +1,4 @@
-﻿using MyFinancialHub.Application.CQRS.Handlers.Commands;
-using MyFinancialHub.Import.Application.Services;
+﻿using MyFinancialHub.Import.Application.Services;
 
 namespace MyFinancialHub.Import.Application.Handlers.ImportPdfFile
 {
@@ -22,8 +21,18 @@ namespace MyFinancialHub.Import.Application.Handlers.ImportPdfFile
         public async Task Handle(ImportPdfFileCommand command)
         {
             var _ = this.logger.BeginScope("ImportPdfFileCommandHandler");
-            this.logger.LogInformation("Handling ImportPdfFileCommand for account: {AccountName}", command.AccountName);
-            var account = await this.accountService.GetOrCreateAsync(command.AccountName);
+            this.logger.LogInformation("Starting ImportPdfFileCommand handling for account: {AccountName}", command.AccountName);
+
+            this.logger.LogInformation("Retrieving account: {AccountName}", command.AccountName);
+            var account = await this.accountService.GetByNameAsync(command.AccountName);
+            this.logger.LogInformation("Account retrieval completed for: {AccountName}", command.AccountName);
+
+            if (account is null)
+            {
+                this.logger.LogInformation("Account not found, creating new account: {AccountName}", command.AccountName);
+                account = await this.accountService.CreateAsync(command.AccountName);
+                this.logger.LogInformation("Account created: {AccountName}", account.Name);
+            }
 
             this.logger.LogInformation("Analyzing PDF file for account: {AccountName}", command.AccountName);
             var importData = await this.importService.ImportAsync(command.PdfStream);
@@ -46,11 +55,6 @@ namespace MyFinancialHub.Import.Application.Handlers.ImportPdfFile
                 this.logger.LogInformation("Transactions for balance {BalanceName} inserted successfully", balance.Name);
             }
             this.logger.LogInformation("All transactions inserted successfully for account: {AccountName}", command.AccountName);
-
-            this.logger.LogInformation("Updating account with new balances: {AccountName}", command.AccountName);
-            account.AddBalances(balances);
-            await this.accountService.UpdateAsync(account);
-            this.logger.LogInformation("Account {AccountName} updated with new balances successfully", command.AccountName);
         }
     }
 }

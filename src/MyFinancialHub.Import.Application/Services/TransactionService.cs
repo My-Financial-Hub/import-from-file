@@ -15,18 +15,11 @@ namespace MyFinancialHub.Import.Application.Services
                 this.logger.LogWarning("No transactions provided to add.");
                 return;
             }
+            await this.repository.AddAsync(balanceName, transactions);
 
-            this.logger.LogInformation("Starting to process {TransactionCount} transactions for balance: {BalanceName}", transactions.Count(), balanceName);
-            foreach (var transaction in transactions)
-            {
-                this.logger.LogInformation("Processing transaction: {TransactionDescription}", transaction.Description);
-                await this.repository.AddAsync(transaction, balanceName);
-                this.logger.LogInformation("Transaction {TransactionDescription} added successfully.", transaction.Description);
-            }
-
-            this.logger.LogInformation("Committing all transactions.");
             await this.repository.CommitAsync();
-            this.logger.LogInformation("All transactions processed successfully.");
+
+            this.logger.LogInformation("All transactions processed and committed successfully.");
         }
     }
 }

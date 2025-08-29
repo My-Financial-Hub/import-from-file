@@ -1,0 +1,10 @@
+﻿{
+  "Azure": {
+    "CognitiveServices": {
+      "DocumentIntelligence": {
+        "Endpoint": "",
+        "ApiKey": ""
+      }
+    }
+  }
+}

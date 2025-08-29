@@ -5,6 +5,7 @@ global using System.Threading.Tasks;
 
 // 3rd party namespaces
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Logging;
 
 // Project namespaces
 global using MyFinancialHub.Import.Infra.Data.Entities;

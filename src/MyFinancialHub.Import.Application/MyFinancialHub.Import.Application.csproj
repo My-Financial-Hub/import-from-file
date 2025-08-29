@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MyFinancialHub.Application.CQRS\MyFinancialHub.Application.CQRS.csproj" />
     <ProjectReference Include="..\MyFinancialHub.Import.Domain\MyFinancialHub.Import.Domain.csproj" />
+    <ProjectReference Include="..\MyFinancialHub.Infra.Events\MyFinancialHub.Infra.Events.csproj" />
   </ItemGroup>
 
 </Project>

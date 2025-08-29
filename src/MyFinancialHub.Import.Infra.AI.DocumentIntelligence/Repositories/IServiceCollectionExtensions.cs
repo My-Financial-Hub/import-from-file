@@ -1,13 +1,12 @@
 ﻿using Azure;
 using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Configurations;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Repositories
 {
     internal static class IServiceCollectionExtensions
     {
-        internal static IServiceCollection AddAzureDocumentIntelligence(this IServiceCollection services)
+        internal static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped(services =>
             {

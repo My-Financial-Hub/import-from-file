@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers.Pdf;
+﻿using MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers.Pdf;
 
 namespace MyFinancialHub.Import.Infra.AI.DocumentIntelligence.Mappers
 {
